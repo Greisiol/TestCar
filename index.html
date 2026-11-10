@@ -4,12 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#14161b">
-<meta name="description" content="Deck manager companion for the board game Heat: Pedal to the Metal">
+<meta name="description" content="Unofficial fan-made deck manager. Not affiliated with the game publisher.">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Heat Deck">
-<title>Heat Companion</title>
+<title>Heat Companion (fan-made)</title>
 <style>
 :root{--bg:#14161b;--panel:#1d2027;--panel2:#272b34;--txt:#f2f2f2;--mut:#9aa0ab;--acc:#ff5a1f;--pc:#888}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -86,6 +88,7 @@ input{font:inherit;color:var(--txt);background:var(--panel2);border:1px solid #3
 .mbox{background:var(--panel);border-radius:18px;padding:18px;width:100%;max-width:380px}
 .mbox h3{margin:0 0 6px}.mbox p{margin:0 0 12px;color:var(--mut)}
 .mrow{display:flex;gap:8px;margin-top:12px}.mrow .btn{flex:1}
+.disc{margin:18px 4px 4px;font-size:11px;line-height:1.4;color:var(--mut);text-align:center;opacity:.8}
 </style>
 </head>
 <body>
@@ -114,7 +117,7 @@ input{font:inherit;color:var(--txt);background:var(--panel2);border:1px solid #3
     const add=(rel,href,extra)=>{const l=document.createElement('link');l.rel=rel;l.href=href;if(extra)Object.keys(extra).forEach(k=>l.setAttribute(k,extra[k]));document.head.appendChild(l)};
     add('apple-touch-icon',i180,{sizes:'180x180'});
     add('icon',i192,{type:'image/png'});
-    const mf={name:'Heat Companion',short_name:'Heat Deck',start_url:location.href.split('#')[0],scope:location.href.split('#')[0].replace(/[^\/]*$/,''),display:'standalone',orientation:'portrait',background_color:'#14161b',theme_color:'#14161b',icons:[{src:i192,sizes:'192x192',type:'image/png'},{src:i512,sizes:'512x512',type:'image/png'}]};
+    const mf={name:'Heat Companion (unofficial fan-made)',short_name:'Heat Deck',start_url:location.href.split('#')[0],scope:location.href.split('#')[0].replace(/[^\/]*$/,''),display:'standalone',orientation:'portrait',background_color:'#14161b',theme_color:'#14161b',icons:[{src:i192,sizes:'192x192',type:'image/png'},{src:i512,sizes:'512x512',type:'image/png'}]};
     add('manifest',URL.createObjectURL(new Blob([JSON.stringify(mf)],{type:'application/manifest+json'})));
   }catch(e){}
   if('serviceWorker' in navigator && /^https?:/.test(location.protocol)){navigator.serviceWorker.register('sw.js').catch(()=>{});}
@@ -122,13 +125,13 @@ input{font:inherit;color:var(--txt);background:var(--panel2);border:1px solid #3
 
 /* ---------- i18n ---------- */
 const T={
-en:{setup:'Players & setup',players:'Players',nop:'No cars yet.',addcar:'Add a car',pname:'Pilot name',add:'Add',pilot:'Pilot',opts:'Race setup',heatEngine:'Heat cards in engine',stressN:'Stress cards in deck',startUpg:'Starting upgrade cards (0, 5, +1 Heat)',handLimit:'Hand limit',optNote:'Changes apply when a race is (re)started.',startRace:'Start race',restartRace:'Restart race (rebuild all decks)',back:'Back to game',needPlayer:'Add at least one car first',pickcolor:'No colour available',
+en:{disc:'Unofficial fan-made tool. Not affiliated with, endorsed or sponsored by the publisher or the authors of "Heat: Pedal to the Metal". All trademarks belong to their respective owners.',setup:'Players & setup',players:'Players',nop:'No cars yet.',addcar:'Add a car',pname:'Pilot name',add:'Add',pilot:'Pilot',opts:'Race setup',heatEngine:'Heat cards in engine',stressN:'Stress cards in deck',startUpg:'Starting upgrade cards (0, 5, +1 Heat)',handLimit:'Hand limit',optNote:'Changes apply when a race is (re)started.',startRace:'Start race',restartRace:'Restart race (rebuild all decks)',back:'Back to game',needPlayer:'Add at least one car first',pickcolor:'No colour available',
 deck:'Deck',discard:'Discard',engine:'Engine',hand:'Hand',top:'top',gear:'Gear',gearInfo:'Play {0} card(s) · Cooling {1}',playN:'Play cards ({0}/{1})',selN:'Select exactly {0} cards',jam:'Not enough playable cards for this gear (Heat in hand).',jamBtn:'Full hand: resolve',jamTitle:'Full hand',jamMsg:'Play every playable card, cover the rest with Heat, car does not move, gear → 1, then draw.',
 playArea:'Play area',speed:'Speed',accel:'Accelerate (−1 Heat)',plus:'Extra ✚ symbol',adrS:'Adrenaline +1 speed',adrC:'Adrenaline +1 cooling',adj:'Speed adjust (upgrades)',curve:'Curve check',limitPh:'Speed limit',check:'Check',discardSel:'Discard selected',nodiscard:'Select Base/Upgrade cards to discard',endTurn:'End turn · draw to {0}',
 payHeat:'Pay Heat · Engine → Discard',coolHeat:'Cool · Hand → Engine',coolLeft:'Cooling allowed this turn: {0}',pay:'Pay',cool:'Cool',tools:'Tools',addStress:'+ Stress',addHeat:'+ Heat',addUpg:'+ Upgrade',addDeck:'Add card to deck (shuffled in)',upgMsg:'Speed value of the Upgrade card:',log:'Log',
 undo:'Undo',newRace:'Restart race',lang:'Language',cancel:'Cancel',ok:'OK',rmConfirm:'Remove this car?',newRaceMsg:'Rebuild every deck and start from scratch?',shift2:'Shift 2 gears',shift2msg:'This costs 1 Heat card.',pay1:'Pay 1 Heat',gear2max:'Max 2 gears per turn',noheat:'Not enough Heat in the engine',noheathand:'No Heat cards in hand',nobase:'No Base card left to reveal!',reshuf:'{0}: discard reshuffled into deck',curveok:'Speed {0} ≤ limit {1}: safe',overspeed:'Over the limit!',overmsg:'Speed {0} vs limit {1}: pay {2} Heat.',payN:'Pay {0} Heat',spin:'Spin out!',spinmsg:'Speed {0} vs limit {1}: you need {2} Heat but have {3}. Pay all Heat, take Stress, gear → 1, move car back.',enterlimit:'Enter the speed limit first',
 lPlay:'Played gear {0}',lPay:'Paid {0} Heat',lCool:'Cooled {0} Heat',lSpin:'Spun out (+{0} Stress, gear 1)',lEnd:'Turn end · speed {0}',lAccel:'Accelerate',lJam:'Full hand',lAdd:'Added {0} to deck',lShift:'Gear {0} → {1} (−1 Heat)'},
-it:{setup:'Piloti e setup',players:'Giocatori',nop:'Nessuna auto.',addcar:'Aggiungi un\'auto',pname:'Nome pilota',add:'Aggiungi',pilot:'Pilota',opts:'Setup gara',heatEngine:'Carte Heat nel motore',stressN:'Carte Stress nel mazzo',startUpg:'Migliorie di Partenza (0, 5, +1 Heat)',handLimit:'Limite di mano',optNote:'Le modifiche valgono quando (ri)avvii la gara.',startRace:'Inizia gara',restartRace:'Ricomincia gara (rigenera i mazzi)',back:'Torna al gioco',needPlayer:'Aggiungi prima almeno un\'auto',pickcolor:'Nessun colore disponibile',
+it:{disc:'Strumento non ufficiale creato da un fan. Non affiliato, approvato o sponsorizzato dall\'editore o dagli autori di «Heat: Pedal to the Metal». Tutti i marchi appartengono ai rispettivi proprietari.',setup:'Piloti e setup',players:'Giocatori',nop:'Nessuna auto.',addcar:'Aggiungi un\'auto',pname:'Nome pilota',add:'Aggiungi',pilot:'Pilota',opts:'Setup gara',heatEngine:'Carte Heat nel motore',stressN:'Carte Stress nel mazzo',startUpg:'Migliorie di Partenza (0, 5, +1 Heat)',handLimit:'Limite di mano',optNote:'Le modifiche valgono quando (ri)avvii la gara.',startRace:'Inizia gara',restartRace:'Ricomincia gara (rigenera i mazzi)',back:'Torna al gioco',needPlayer:'Aggiungi prima almeno un\'auto',pickcolor:'Nessun colore disponibile',
 deck:'Mazzo',discard:'Scarti',engine:'Motore',hand:'Mano',top:'cima',gear:'Marcia',gearInfo:'Giochi {0} carta/e · Raffreddamento {1}',playN:'Gioca le carte ({0}/{1})',selN:'Seleziona esattamente {0} carte',jam:'Carte giocabili insufficienti per questa marcia (Heat in mano).',jamBtn:'Mano Piena: risolvi',jamTitle:'Mano Piena',jamMsg:'Usi tutte le carte giocabili e copri il resto con Heat, l\'auto non si muove, marcia → 1, poi peschi.',
 playArea:'Area di Gioco',speed:'Velocità',accel:'Accelerare (−1 Heat)',plus:'Simbolo ✚ extra',adrS:'Adrenalina +1 Velocità',adrC:'Adrenalina +1 Raffreddamento',adj:'Correzione velocità (Migliorie)',curve:'Controllo curva',limitPh:'Limite di Velocità',check:'Verifica',discardSel:'Scarta selezionate',nodiscard:'Seleziona carte Base/Miglioria da scartare',endTurn:'Fine turno · pesca fino a {0}',
 payHeat:'Paga Heat · Motore → Scarti',coolHeat:'Raffredda · Mano → Motore',coolLeft:'Raffreddamento consentito nel turno: {0}',pay:'Paga',cool:'Raffredda',tools:'Strumenti',addStress:'+ Stress',addHeat:'+ Heat',addUpg:'+ Miglioria',addDeck:'Aggiungi carta al mazzo (mescolata)',upgMsg:'Valore di Velocità della Miglioria:',log:'Cronologia',
@@ -236,7 +239,7 @@ function cardHTML(c,o={}){
 const slotHTML=s=>`<div class="slot">${s.card?cardHTML(s.card):`<div class="pl">${esc(s.label)}</div>`}${s.repl?`<div class="arr">▼</div>${cardHTML(s.repl)}`:(s.card&&s.card.t==='s'?'<div class="arr">∅</div>':'')}</div>`;
 const selectable=(p,c)=>p.played?(c.t==='b'||c.t==='u'):c.t!=='h';
 function header(setup){
-  return `<header><h1>🏁 Heat <span>Companion</span></h1>
+  return `<header><h1>🏁 Heat <span>Companion</span> <small style="font-size:11px;font-weight:600;color:var(--mut);letter-spacing:.04em">fan-made</small></h1>
   <button class="ib" data-a="undo" aria-label="${t('undo')}" ${hist.length?'':'disabled'}>↶</button>
   <button class="ib" data-a="setup" aria-label="${t('setup')}">${setup&&S.started?'🏎':'👥'}</button>
   <button class="ib" data-a="lang" aria-label="${t('lang')}" style="font-size:13px;font-weight:700">${S.lang.toUpperCase()}</button>
@@ -331,7 +334,7 @@ function render(){
   const setup=ui.screen==='setup'||!S.started||!S.players.length;
   const p=S.players[S.active];
   document.body.style.setProperty('--pc',p?col(p).hex:'#888');
-  $('#app').innerHTML=header(setup)+(setup?renderSetup():renderGame());
+  $('#app').innerHTML=header(setup)+(setup?renderSetup():renderGame())+`<footer class="disc">${t('disc')}</footer>`;
 }
 
 /* ---------- actions ---------- */
