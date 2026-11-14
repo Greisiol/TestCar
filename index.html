@@ -17,43 +17,62 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.35 -apple-system,system-ui,"Segoe UI",Roboto,sans-serif;touch-action:manipulation;overscroll-behavior:none}
 body{padding:env(safe-area-inset-top) env(safe-area-inset-right) calc(env(safe-area-inset-bottom) + 24px) env(safe-area-inset-left)}
-#app{max-width:560px;margin:0 auto;padding:0 12px}
+#app{max-width:600px;margin:0 auto;padding:0 8px}
 button{font:inherit;color:inherit;cursor:pointer}
 button:disabled{opacity:.4;cursor:default}
 header{display:flex;align-items:center;gap:6px;padding:12px 0 8px}
-header h1{font-size:20px;margin:0;flex:1;letter-spacing:.02em}
+header h1{font-size:19px;margin:0;flex:1;letter-spacing:.02em;min-width:0}
 header h1 span{color:var(--acc)}
-.ib{width:40px;height:40px;border-radius:12px;border:0;background:var(--panel2);font-size:18px}
-.tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:none}
-.tabs::-webkit-scrollbar{display:none}
-.tab{flex:0 0 auto;display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:2px solid transparent;background:var(--panel2);font-weight:600}
-.tab.on{border-color:var(--pc);background:var(--panel)}
+.ib{width:40px;height:40px;border-radius:12px;border:0;background:var(--panel2);font-size:18px;flex:0 0 auto}
+.wrap{display:grid;grid-template-columns:50px minmax(0,1fr);gap:8px;align-items:start}
+.rail{position:sticky;top:calc(env(safe-area-inset-top) + 6px);display:flex;flex-direction:column;gap:8px;align-items:center;max-height:calc(100vh - 16px);overflow-y:auto;padding:4px 0 8px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.rb{position:relative;width:44px;height:44px;flex:0 0 auto;border-radius:50%;border:3px solid rgba(255,255,255,.18);font-size:13px;font-weight:800;padding:0;opacity:.72}
+.rb.on{border-color:#fff;opacity:1;box-shadow:0 0 0 3px var(--bg),0 0 0 5px #fff}
+.rb i{position:absolute;font-style:normal;font-size:10px;font-weight:800;line-height:15px;min-width:15px;height:15px;border-radius:8px;padding:0 3px;color:#fff}
+.rb .rg{left:-5px;bottom:-5px;background:#000c}
+.rb .rh{right:-5px;bottom:-5px;background:#c2410c}
+.rb .rp{right:-3px;top:-3px;min-width:11px;width:11px;height:11px;padding:0;background:#4ade80;border:2px solid var(--bg)}
 .dot{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.35);flex:0 0 auto;display:inline-block}
-.tick{color:#7be08a}
-.panel{background:var(--panel);border-radius:16px;padding:14px;margin-bottom:12px}
+.panel{background:var(--panel);border-radius:16px;padding:12px;margin-bottom:10px}
 .panel.me{border-top:5px solid var(--pc)}
 .panel h2{font-size:13px;margin:0 0 10px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut)}
-.pname{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:800;margin-bottom:10px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.stat{background:var(--panel2);border-radius:12px;padding:8px 4px;text-align:center}
-.stat b{display:block;font-size:22px}
-.stat span{font-size:11px;color:var(--mut)}
+.pname{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:800;margin-bottom:10px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.stat{background:var(--panel2);border-radius:12px;padding:8px 2px;text-align:center}
+.stat b{display:block;font-size:21px}
+.stat span{font-size:10px;color:var(--mut)}
 .stat.heat b{color:#ff7a3d}
-.flames{margin-top:8px;font-size:16px;letter-spacing:2px;min-height:20px}
 .mut{color:var(--mut);font-size:13px}
 .gears{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:6px}
-.gear{height:54px;border-radius:14px;border:2px solid var(--panel2);background:var(--panel2);font-size:24px;font-weight:800}
+.gear{height:52px;border-radius:14px;border:2px solid var(--panel2);background:var(--panel2);font-size:24px;font-weight:800}
 .gear.on{background:var(--pc);border-color:#fff;color:var(--ink,#fff)}
-.hand{display:flex;flex-wrap:wrap;gap:8px;padding-top:10px;min-height:96px}
-.card{width:54px;height:76px;border-radius:9px;border:2px solid rgba(255,255,255,.28);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-weight:800;color:#fff;padding:0;font-family:inherit;position:relative;transition:transform .1s}
+.hand{display:flex;flex-wrap:wrap;gap:6px;padding-top:10px;min-height:96px}
+.card{width:54px;height:78px;border-radius:9px;border:2px solid rgba(255,255,255,.28);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-weight:800;color:#fff;padding:0;font-family:inherit;position:relative;transition:transform .1s;flex:0 0 auto;overflow:hidden}
 .card .v{font-size:26px;line-height:1}
 .card .i{font-size:8px;letter-spacing:.06em;opacity:.9;text-transform:uppercase}
 .card.b{background:linear-gradient(160deg,#3b82f6,#1e3a8a)}
 .card.s{background:repeating-linear-gradient(45deg,#6d3fc0 0 8px,#4b2a8a 8px 16px)}
 .card.h{background:linear-gradient(160deg,#ff7a3d,#b3200f)}
 .card.u{background:linear-gradient(160deg,#f6c94a,#a8740c);color:#2a1d00}
+.card.g{background:#ece5d3;color:#17181c;justify-content:flex-start;gap:2px;border-color:#17181c}
+.card.g .ub{width:100%;background:#17181c;color:#fff;font-size:19px;line-height:26px;height:26px;text-align:center;letter-spacing:-.02em}
+.card.g .ub.sm{font-size:12px}
+.card.g .i{font-size:8px;opacity:1;font-weight:800;margin-top:1px}
+.card.g .sys{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:0 1px}
 .card.sel{transform:translateY(-8px);box-shadow:0 0 0 3px #fff,0 8px 16px #0009}
 .card.dis{opacity:.5}
+.card.void{opacity:.45;filter:grayscale(1)}
+.sy{display:inline-flex;align-items:center;justify-content:center;min-width:16px;height:16px;border-radius:5px;font-size:9px;font-weight:800;padding:0 2px;line-height:1;color:#fff;flex:0 0 auto;font-family:-apple-system,system-ui,sans-serif}
+.sy.lg{min-width:26px;height:24px;font-size:12px;border-radius:7px;padding:0 4px}
+.sy-h{background:#d92d20}.sy-d{background:#6b7280}.sy-l{background:#fff;color:#111;border-radius:50%;box-shadow:inset 0 0 0 2px #9aa0ab}
+.sy.lg.sy-l{border-radius:12px}
+.sy-c{background:#1d9bf0}.sy-s{background:#12805c}
+.sy-r{background:repeating-linear-gradient(45deg,#e5b93c 0 4px,#4b3aa8 4px 8px);text-shadow:0 0 2px #000,0 0 2px #000}
+.sy-g{background:#cfd4dc;color:#111}.sy-dp{background:#fff;color:#111;box-shadow:inset 0 0 0 1px #9aa0ab}.sy-acc{background:#111;box-shadow:inset 0 0 0 1px #fff}
+.sy-rf{background:conic-gradient(#111 25%,#eee 0 50%,#111 0 75%,#eee 0);background-size:8px 8px;text-shadow:0 0 2px #000,0 0 3px #000}
+.sy.m{box-shadow:0 2px 0 #f5b301}
+.sy-l.m{box-shadow:inset 0 0 0 2px #9aa0ab,0 2px 0 #f5b301}
 .row{display:flex;gap:8px;align-items:center;margin-top:10px}
 .row.wrap{flex-wrap:wrap}
 .btn{border:0;border-radius:12px;padding:12px 14px;background:var(--acc);color:#fff;font-weight:700}
@@ -66,6 +85,17 @@ header h1 span{color:var(--acc)}
 .slot{display:flex;flex-direction:column;align-items:center;gap:2px}
 .slot .arr{font-size:11px;color:var(--mut);line-height:1}
 .slot .pl{width:54px;height:30px;border-radius:8px;background:var(--panel2);display:flex;align-items:center;justify-content:center;font-weight:800}
+.chs{display:flex;gap:3px;margin-top:2px}
+.chs button{min-width:24px;height:26px;border-radius:7px;border:0;background:var(--panel2);font-weight:800;font-size:14px;padding:0 4px}
+.chs button.on{background:#fff;color:#111}
+.fx{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.fxb{display:flex;align-items:center;gap:8px;width:100%;text-align:left;border:1px solid var(--panel2);background:transparent;border-radius:10px;padding:6px 8px;font-size:13px;color:var(--txt)}
+button.fxb{background:var(--panel2);border-color:#3a3f4a}
+.fxb.mand{border-color:#f5b301}
+.fxb.done{opacity:.55}
+.fxb .st{margin-left:auto;font-weight:800;font-size:12px;color:var(--mut);white-space:nowrap}
+.sum{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sum span{background:var(--panel2);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700}
 .speedbox{display:flex;align-items:baseline;gap:10px;margin-top:10px}
 .speedbox span{color:var(--mut);text-transform:uppercase;font-size:12px;letter-spacing:.08em}
 .speedbox b{font-size:46px;line-height:1;color:var(--pc);text-shadow:0 0 1px #fff}
@@ -73,22 +103,48 @@ header h1 span{color:var(--acc)}
 .step button{width:36px;height:36px;border:0;border-radius:10px;background:var(--panel2);font-size:20px}
 .step b{min-width:26px;text-align:center;font-size:18px}
 input{font:inherit;color:var(--txt);background:var(--panel2);border:1px solid #3a3f4a;border-radius:10px;padding:10px;width:100%;min-width:0}
-.lbl{flex:1;font-size:14px}
+.lbl{flex:1;font-size:14px;min-width:0}
 .prow{display:flex;gap:8px;align-items:center;margin-bottom:8px}
-.x{width:38px;height:38px;border-radius:10px;border:0;background:var(--panel2)}
+.x{width:38px;height:38px;border-radius:10px;border:0;background:var(--panel2);flex:0 0 auto}
+.ubtn{height:38px;border-radius:10px;border:0;background:var(--panel2);padding:0 10px;font-weight:700;font-size:14px;flex:0 0 auto;white-space:nowrap}
+.ubtn.warn{box-shadow:inset 0 0 0 2px #f5b301}
 .swatches{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
 .sw{width:38px;height:38px;border-radius:50%;border:3px solid rgba(255,255,255,.25)}
 .sw.on{border-color:#fff;transform:scale(1.12)}
 .log{font-size:13px;color:var(--mut);max-height:160px;overflow:auto}
 .log div{padding:3px 0;border-bottom:1px solid var(--panel2)}
-#toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 18px);transform:translate(-50%,30px);background:#000d;color:#fff;padding:10px 16px;border-radius:12px;opacity:0;transition:.2s;pointer-events:none;max-width:90%;text-align:center;z-index:50;font-size:14px}
+.leg{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-bottom:8px}
+.leg b{display:block}
+.leg span.tx{color:var(--mut)}
+.sheet{position:fixed;inset:0;background:var(--bg);z-index:40;display:flex;flex-direction:column;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.sheethead{display:flex;align-items:center;gap:8px;padding:12px}
+.sheethead h3{margin:0;flex:1;font-size:18px;min-width:0}
+.sheetbody{flex:1;overflow-y:auto;padding:0 12px 24px;-webkit-overflow-scrolling:touch;max-width:600px;width:100%;margin:0 auto}
+.filt{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.filt button{border:0;border-radius:999px;background:var(--panel2);padding:7px 12px;font-size:13px;font-weight:700}
+.filt button.on{background:#fff;color:#111}
+.cat{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin:14px 0 6px}
+.urow{display:flex;gap:10px;align-items:center;width:100%;text-align:left;padding:8px;border-radius:12px;background:var(--panel);margin-bottom:6px;border:2px solid transparent;color:var(--txt)}
+.urow.on{border-color:var(--acc)}
+.urow .ut{flex:1;min-width:0;font-size:13px}
+.urow .ut b{display:block;font-size:14px}
+.urow .ut .bd{display:flex;flex-wrap:wrap;gap:4px;margin:4px 0 2px}
+.urow .ck{width:26px;height:26px;border-radius:50%;border:2px solid #3a3f4a;display:flex;align-items:center;justify-content:center;font-weight:800;flex:0 0 auto}
+.urow.on .ck{background:var(--acc);border-color:var(--acc)}
+.note{background:var(--panel);border-radius:12px;padding:10px;font-size:13px;margin-bottom:10px}
+.note.warn{box-shadow:inset 0 0 0 2px #f5b301}
+.chips{display:flex;gap:8px;margin-top:8px}
+.chips button{flex:1;border:2px solid #3a3f4a;border-radius:10px;background:var(--panel2);padding:10px 4px;font-weight:800}
+.chips button.on{border-color:#f5b301;background:#5a3f00}
+.disc{margin:18px 4px 4px;font-size:11px;line-height:1.4;color:var(--mut);text-align:center;opacity:.8}
+#toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 18px);transform:translate(-50%,30px);background:#000d;color:#fff;padding:10px 16px;border-radius:12px;opacity:0;transition:.2s;pointer-events:none;max-width:90%;text-align:center;z-index:70;font-size:14px}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 #modal{position:fixed;inset:0;background:#000a;display:none;align-items:center;justify-content:center;padding:20px;z-index:60}
 #modal.on{display:flex}
-.mbox{background:var(--panel);border-radius:18px;padding:18px;width:100%;max-width:380px}
+.mbox{background:var(--panel);border-radius:18px;padding:18px;width:100%;max-width:380px;max-height:86vh;overflow:auto}
 .mbox h3{margin:0 0 6px}.mbox p{margin:0 0 12px;color:var(--mut)}
 .mrow{display:flex;gap:8px;margin-top:12px}.mrow .btn{flex:1}
-.disc{margin:18px 4px 4px;font-size:11px;line-height:1.4;color:var(--mut);text-align:center;opacity:.8}
+.pick{display:flex;flex-wrap:wrap;gap:8px}
 </style>
 </head>
 <body>
@@ -125,18 +181,56 @@ input{font:inherit;color:var(--txt);background:var(--panel2);border:1px solid #3
 
 /* ---------- i18n ---------- */
 const T={
-en:{disc:'Unofficial fan-made tool. Not affiliated with, endorsed or sponsored by the publisher or the authors of "Heat: Pedal to the Metal". All trademarks belong to their respective owners.',setup:'Players & setup',players:'Players',nop:'No cars yet.',addcar:'Add a car',pname:'Pilot name',add:'Add',pilot:'Pilot',opts:'Race setup',heatEngine:'Heat cards in engine',stressN:'Stress cards in deck',startUpg:'Starting upgrade cards (0, 5, +1 Heat)',handLimit:'Hand limit',optNote:'Changes apply when a race is (re)started.',startRace:'Start race',restartRace:'Restart race (rebuild all decks)',back:'Back to game',needPlayer:'Add at least one car first',pickcolor:'No colour available',
+en:{disc:'Unofficial fan-made tool. Not affiliated with, endorsed or sponsored by the publisher or the authors of "Heat: Pedal to the Metal". All trademarks belong to their respective owners.',
+setup:'Players & setup',players:'Players',nop:'No cars yet.',addcar:'Add a car',pname:'Pilot name',add:'Add',pilot:'Pilot',opts:'Race setup',heatEngine:'Heat cards in engine',stressN:'Stress cards in deck',startUpg:'Starting upgrade cards (0, 5, +1 Heat)',handLimit:'Hand limit',optNote:'Changes apply when a race is (re)started.',startRace:'Start race',restartRace:'Restart race (rebuild all decks)',back:'Back to game',needPlayer:'Add at least one car first',pickcolor:'No colour available',
 deck:'Deck',discard:'Discard',engine:'Engine',hand:'Hand',top:'top',gear:'Gear',gearInfo:'Play {0} card(s) · Cooling {1}',playN:'Play cards ({0}/{1})',selN:'Select exactly {0} cards',jam:'Not enough playable cards for this gear (Heat in hand).',jamBtn:'Full hand: resolve',jamTitle:'Full hand',jamMsg:'Play every playable card, cover the rest with Heat, car does not move, gear → 1, then draw.',
-playArea:'Play area',speed:'Speed',accel:'Accelerate (−1 Heat)',plus:'Extra ✚ symbol',adrS:'Adrenaline +1 speed',adrC:'Adrenaline +1 cooling',adj:'Speed adjust (upgrades)',curve:'Curve check',limitPh:'Speed limit',check:'Check',discardSel:'Discard selected',nodiscard:'Select Base/Upgrade cards to discard',endTurn:'End turn · draw to {0}',
-payHeat:'Pay Heat · Engine → Discard',coolHeat:'Cool · Hand → Engine',coolLeft:'Cooling allowed this turn: {0}',pay:'Pay',cool:'Cool',tools:'Tools',addStress:'+ Stress',addHeat:'+ Heat',addUpg:'+ Upgrade',addDeck:'Add card to deck (shuffled in)',upgMsg:'Speed value of the Upgrade card:',log:'Log',
+playArea:'Play area',speed:'Speed',accel:'Boost (−1 Heat)',plus:'Extra ✚ symbol',adrS:'Adrenaline +1 speed',adrC:'Adrenaline +1 cooling',adj:'Manual speed adjust',curve:'Corner check',limitPh:'Speed limit',check:'Check',discardSel:'Discard selected',nodiscard:'Select Base/Upgrade cards to discard',endTurn:'End turn · draw to {0}',
+payHeat:'Pay Heat · Engine → Discard',coolHeat:'Cool · Hand → Engine',pay:'Pay',cool:'Cool',tools:'Tools',addStress:'+ Stress',addHeat:'+ Heat',addUpg:'+ Upgrade',addDeck:'Add card to deck (shuffled in)',upgMsg:'Speed value of the Upgrade card:',log:'Log',
 undo:'Undo',newRace:'Restart race',lang:'Language',cancel:'Cancel',ok:'OK',rmConfirm:'Remove this car?',newRaceMsg:'Rebuild every deck and start from scratch?',shift2:'Shift 2 gears',shift2msg:'This costs 1 Heat card.',pay1:'Pay 1 Heat',gear2max:'Max 2 gears per turn',noheat:'Not enough Heat in the engine',noheathand:'No Heat cards in hand',nobase:'No Base card left to reveal!',reshuf:'{0}: discard reshuffled into deck',curveok:'Speed {0} ≤ limit {1}: safe',overspeed:'Over the limit!',overmsg:'Speed {0} vs limit {1}: pay {2} Heat.',payN:'Pay {0} Heat',spin:'Spin out!',spinmsg:'Speed {0} vs limit {1}: you need {2} Heat but have {3}. Pay all Heat, take Stress, gear → 1, move car back.',enterlimit:'Enter the speed limit first',
-lPlay:'Played gear {0}',lPay:'Paid {0} Heat',lCool:'Cooled {0} Heat',lSpin:'Spun out (+{0} Stress, gear 1)',lEnd:'Turn end · speed {0}',lAccel:'Accelerate',lJam:'Full hand',lAdd:'Added {0} to deck',lShift:'Gear {0} → {1} (−1 Heat)'},
-it:{disc:'Strumento non ufficiale creato da un fan. Non affiliato, approvato o sponsorizzato dall\'editore o dagli autori di «Heat: Pedal to the Metal». Tutti i marchi appartengono ai rispettivi proprietari.',setup:'Piloti e setup',players:'Giocatori',nop:'Nessuna auto.',addcar:'Aggiungi un\'auto',pname:'Nome pilota',add:'Aggiungi',pilot:'Pilota',opts:'Setup gara',heatEngine:'Carte Heat nel motore',stressN:'Carte Stress nel mazzo',startUpg:'Migliorie di Partenza (0, 5, +1 Heat)',handLimit:'Limite di mano',optNote:'Le modifiche valgono quando (ri)avvii la gara.',startRace:'Inizia gara',restartRace:'Ricomincia gara (rigenera i mazzi)',back:'Torna al gioco',needPlayer:'Aggiungi prima almeno un\'auto',pickcolor:'Nessun colore disponibile',
+lPlay:'Played gear {0}',lPay:'Paid {0} Heat',lCool:'Cooled {0} Heat',lSpin:'Spun out (+{0} Stress, gear 1)',lEnd:'Turn end · speed {0}',lAccel:'Boost',lJam:'Full hand',lAdd:'Added {0} to deck',lShift:'Gear {0} → {1} (−1 Heat)',
+upgs:'Upgrade cards',poolT:'Upgrades in this race',poolN:'{0} cards selected',choose:'Choose',poolHint:'Tick the Upgrade cards drafted for this race. You then assign them to each pilot.',fAll:'All',fReg:'Regular',fAdv:'Advanced',reg:'Regular',adv:'Advanced',close:'Done',pilotUpg:'Upgrades · {0}',poolEmpty:'No cards in the race pool yet. Choose them first in "Upgrades in this race".',openPool:'Choose race upgrades',takenBy:'taken by {0}',
+rmTitle:'Starting cards to remove: {0}',rmHint:'Up to 2 Upgrades are added to the starting cards. From the 3rd on, each one replaces a starting card of your choice.',rmNone:'{0} Upgrade(s): all starting cards stay in the deck.',rmNeed:'{0}: choose which starting cards to remove',applyNote:'Changes apply when the race is (re)started.',
+symbols:'Symbols on played cards',legend:'Symbol legend',mand:'mandatory',opt:'optional',auto:'auto',paid:'paid',apply:'apply',done:'done',on:'ON',off:'OFF',
+sumCool:'Cooling {0}',sumSlip:'Slipstream +{0}',sumLim:'Corner limit {0}',limEff:'Limit {0} {1} = {2}',voidmsg:'{0}: not enough Heat, card discarded and replaced by a Base card',scrapAuto:'Scrap applied automatically',direct:'Direct Play',noStress:'No Stress cards in hand',salvT:'Salvage',salvM:'Choose up to {0} cards from the discard pile to shuffle into the deck.',salvEmpty:'Discard pile is empty',lScrap:'Scrap {0}',lSalv:'Salvage {0}',lStress:'Discarded {0} Stress',lDirect:'Direct Play',
+n_h:'Heat',n_d:'Scrap',n_l:'Adjust speed limit',n_c:'Cooldown',n_s:'Slipstream boost',n_r:'Reduce Stress',n_g:'Salvage',n_dp:'Direct Play',n_acc:'Accelerate',n_rf:'Refresh',
+d_h:'Move # Heat from the engine to the discard pile. Paid automatically when the card is played; if you cannot pay, the card is discarded and replaced by a Base card from the deck.',
+d_d:'Discard the top card of your draw deck # times. Tap the row to apply it (applied automatically at end of turn if forgotten).',
+d_l:'If you cross a corner line this turn its speed limit changes by #. Added automatically to the corner check.',
+d_c:'Move up to # Heat from hand to engine. Added automatically to the cooling allowed this turn.',
+d_s:'If you slipstream, the 2 normal spaces are increased by #. Shown as a reminder.',
+d_r:'Discard up to # Stress cards from hand. Tap the row to apply it.',
+d_g:'Choose up to # cards from the discard pile and shuffle them into the draw deck. Tap the row to pick them.',
+d_dp:'Can be played from hand after the reveal (step 5): select it in hand and tap "Direct Play". It counts as if played normally.',
+d_acc:'Speed +1 for each ✚ symbol used this turn (Upgrades, Stress, Boost). All or nothing. Tap the row to switch it on.',
+d_rf:'At end of turn put this card back on top of the draw deck instead of discarding it. Tap the row to switch it on.',
+t_h:'Pay {0} Heat',t_d:'Scrap {0}',t_l:'Corner limit {0}',t_c:'Cooling +{0}',t_s:'Slipstream +{0}',t_r:'Discard up to {0} Stress',t_g:'Salvage up to {0}',t_dp:'Direct Play',t_acc:'Accelerate (+1 per ✚)',t_rf:'Refresh',
+c_4wd:'4 Wheel Drive',c_body:'Body',c_brk:'Brakes',c_cool:'Cooling System',c_rpm:'R.P.M.',c_fuel:'Fuel',c_gas:'Gas Pedal',c_sus:'Suspension',c_tir:'Tires',c_trb:'Turbo Charger',c_wng:'Wings',c_heat:'Extra Heat card',
+s_4wd:'4WD',s_body:'BODY',s_brk:'BRAKE',s_cool:'COOL',s_rpm:'RPM',s_fuel:'FUEL',s_gas:'GAS',s_sus:'SUSP',s_tir:'TIRES',s_trb:'TURBO',s_wng:'WINGS',s_heat:'HEAT',heatUpgD:'Works like a normal Heat card, but starts shuffled in the deck.',spd:'Speed'},
+it:{disc:'Strumento non ufficiale creato da un fan. Non affiliato, approvato o sponsorizzato dall\'editore o dagli autori di «Heat: Pedal to the Metal». Tutti i marchi appartengono ai rispettivi proprietari.',
+setup:'Piloti e setup',players:'Giocatori',nop:'Nessuna auto.',addcar:'Aggiungi un\'auto',pname:'Nome pilota',add:'Aggiungi',pilot:'Pilota',opts:'Setup gara',heatEngine:'Carte Heat nel motore',stressN:'Carte Stress nel mazzo',startUpg:'Migliorie di Partenza (0, 5, +1 Heat)',handLimit:'Limite di mano',optNote:'Le modifiche valgono quando (ri)avvii la gara.',startRace:'Inizia gara',restartRace:'Ricomincia gara (rigenera i mazzi)',back:'Torna al gioco',needPlayer:'Aggiungi prima almeno un\'auto',pickcolor:'Nessun colore disponibile',
 deck:'Mazzo',discard:'Scarti',engine:'Motore',hand:'Mano',top:'cima',gear:'Marcia',gearInfo:'Giochi {0} carta/e · Raffreddamento {1}',playN:'Gioca le carte ({0}/{1})',selN:'Seleziona esattamente {0} carte',jam:'Carte giocabili insufficienti per questa marcia (Heat in mano).',jamBtn:'Mano Piena: risolvi',jamTitle:'Mano Piena',jamMsg:'Usi tutte le carte giocabili e copri il resto con Heat, l\'auto non si muove, marcia → 1, poi peschi.',
-playArea:'Area di Gioco',speed:'Velocità',accel:'Accelerare (−1 Heat)',plus:'Simbolo ✚ extra',adrS:'Adrenalina +1 Velocità',adrC:'Adrenalina +1 Raffreddamento',adj:'Correzione velocità (Migliorie)',curve:'Controllo curva',limitPh:'Limite di Velocità',check:'Verifica',discardSel:'Scarta selezionate',nodiscard:'Seleziona carte Base/Miglioria da scartare',endTurn:'Fine turno · pesca fino a {0}',
-payHeat:'Paga Heat · Motore → Scarti',coolHeat:'Raffredda · Mano → Motore',coolLeft:'Raffreddamento consentito nel turno: {0}',pay:'Paga',cool:'Raffredda',tools:'Strumenti',addStress:'+ Stress',addHeat:'+ Heat',addUpg:'+ Miglioria',addDeck:'Aggiungi carta al mazzo (mescolata)',upgMsg:'Valore di Velocità della Miglioria:',log:'Cronologia',
+playArea:'Area di Gioco',speed:'Velocità',accel:'Accelerare (−1 Heat)',plus:'Simbolo ✚ extra',adrS:'Adrenalina +1 Velocità',adrC:'Adrenalina +1 Raffreddamento',adj:'Correzione manuale velocità',curve:'Controllo curva',limitPh:'Limite di Velocità',check:'Verifica',discardSel:'Scarta selezionate',nodiscard:'Seleziona carte Base/Miglioria da scartare',endTurn:'Fine turno · pesca fino a {0}',
+payHeat:'Paga Heat · Motore → Scarti',coolHeat:'Raffredda · Mano → Motore',pay:'Paga',cool:'Raffredda',tools:'Strumenti',addStress:'+ Stress',addHeat:'+ Heat',addUpg:'+ Miglioria',addDeck:'Aggiungi carta al mazzo (mescolata)',upgMsg:'Valore di Velocità della Miglioria:',log:'Cronologia',
 undo:'Annulla',newRace:'Ricomincia gara',lang:'Lingua',cancel:'Annulla',ok:'OK',rmConfirm:'Rimuovere questa auto?',newRaceMsg:'Rigenerare tutti i mazzi e ripartire da zero?',shift2:'Cambio di 2 marce',shift2msg:'Costa 1 carta Heat.',pay1:'Paga 1 Heat',gear2max:'Massimo 2 marce per turno',noheat:'Heat insufficienti nel motore',noheathand:'Nessuna carta Heat in mano',nobase:'Nessuna carta Base da rivelare!',reshuf:'{0}: scarti rimescolati nel mazzo',curveok:'Velocità {0} ≤ limite {1}: tutto ok',overspeed:'Limite superato!',overmsg:'Velocità {0} contro limite {1}: paga {2} Heat.',payN:'Paga {0} Heat',spin:'Sbandata!',spinmsg:'Velocità {0} contro limite {1}: servono {2} Heat ma ne hai {3}. Paghi tutte le Heat, prendi Stress, marcia → 1, auto indietro.',enterlimit:'Inserisci prima il Limite di Velocità',
-lPlay:'Giocata marcia {0}',lPay:'Pagate {0} Heat',lCool:'Raffreddate {0} Heat',lSpin:'Sbandata (+{0} Stress, marcia 1)',lEnd:'Fine turno · velocità {0}',lAccel:'Accelerare',lJam:'Mano Piena',lAdd:'Aggiunta {0} al mazzo',lShift:'Marcia {0} → {1} (−1 Heat)'}
+lPlay:'Giocata marcia {0}',lPay:'Pagate {0} Heat',lCool:'Raffreddate {0} Heat',lSpin:'Sbandata (+{0} Stress, marcia 1)',lEnd:'Fine turno · velocità {0}',lAccel:'Accelerare',lJam:'Mano Piena',lAdd:'Aggiunta {0} al mazzo',lShift:'Marcia {0} → {1} (−1 Heat)',
+upgs:'Carte Miglioria',poolT:'Migliorie in questa gara',poolN:'{0} carte selezionate',choose:'Scegli',poolHint:'Spunta le carte Miglioria scelte per questa gara. Poi le assegni a ciascun pilota.',fAll:'Tutte',fReg:'Regolari',fAdv:'Avanzate',reg:'Regolare',adv:'Avanzata',close:'Fatto',pilotUpg:'Migliorie · {0}',poolEmpty:'Nessuna carta nel mercato di gara. Sceglile prima in "Migliorie in questa gara".',openPool:'Scegli le Migliorie di gara',takenBy:'presa da {0}',
+rmTitle:'Carte di Partenza da togliere: {0}',rmHint:'Fino a 2 Migliorie si sommano alle carte di Partenza. Dalla 3ª in poi, ognuna sostituisce una carta di Partenza a tua scelta.',rmNone:'{0} Miglioria/e: tutte le carte di Partenza restano nel mazzo.',rmNeed:'{0}: scegli quali carte di Partenza togliere',applyNote:'Le modifiche valgono quando (ri)avvii la gara.',
+symbols:'Simboli delle carte giocate',legend:'Legenda simboli',mand:'obbligatorio',opt:'facoltativo',auto:'auto',paid:'pagato',apply:'applica',done:'fatto',on:'ON',off:'OFF',
+sumCool:'Raffreddamento {0}',sumSlip:'Scia +{0}',sumLim:'Limite curva {0}',limEff:'Limite {0} {1} = {2}',voidmsg:'{0}: Heat insufficienti, carta scartata e sostituita da una carta Base',scrapAuto:'Detriti applicati automaticamente',direct:'Gioco Diretto',noStress:'Nessuna carta Stress in mano',salvT:'Recuperare',salvM:'Scegli fino a {0} carte dalla pila degli scarti da mescolare nel mazzo.',salvEmpty:'La pila degli scarti è vuota',lScrap:'Detriti {0}',lSalv:'Recuperate {0}',lStress:'Scartate {0} Stress',lDirect:'Gioco Diretto',
+n_h:'Heat',n_d:'Detriti',n_l:'Regolare il Limite di Velocità',n_c:'Raffreddamento',n_s:'Accelerare Entrando in Scia',n_r:'Ridurre lo Stress',n_g:'Recuperare',n_dp:'Gioco Diretto',n_acc:'Dare Gas',n_rf:'Ripristinare',
+d_h:'Metti # Heat dal motore negli scarti. Pagato in automatico quando giochi la carta; se non puoi pagare, la carta viene scartata e sostituita da una carta Base dal mazzo.',
+d_d:'Scarta la carta in cima al mazzo # volte. Tocca la riga per applicarlo (a fine turno viene applicato da solo se dimenticato).',
+d_l:'Se passi una linea di curva in questo turno, il limite è modificato di #. Sommato in automatico nel Controllo curva.',
+d_c:'Rimetti fino a # Heat dalla mano nel motore. Sommato in automatico al Raffreddamento consentito nel turno.',
+d_s:'Se entri in scia, le 2 caselle normali aumentano di #. Mostrato come promemoria.',
+d_r:'Scarta fino a # carte Stress dalla mano. Tocca la riga per applicarlo.',
+d_g:'Scegli fino a # carte dagli scarti e mescolale nel mazzo. Tocca la riga per sceglierle.',
+d_dp:'Si può giocare dalla mano dopo aver rivelato (passo 5): selezionala in mano e tocca "Gioco Diretto". Vale come se giocata normalmente.',
+d_acc:'Velocità +1 per ogni simbolo ✚ usato nel turno (Migliorie, Stress, Accelerare). Tutti o nessuno. Tocca la riga per attivarlo.',
+d_rf:'A fine turno rimetti questa carta in cima al mazzo invece di scartarla. Tocca la riga per attivarlo.',
+t_h:'Paga {0} Heat',t_d:'Detriti {0}',t_l:'Limite curva {0}',t_c:'Raffreddamento +{0}',t_s:'Scia +{0}',t_r:'Scarta fino a {0} Stress',t_g:'Recupera fino a {0} carte',t_dp:'Gioco Diretto',t_acc:'Dare Gas (+1 per ✚)',t_rf:'Ripristinare',
+c_4wd:'4 Ruote Motrici',c_body:'Carrozzeria',c_brk:'Freni',c_cool:'Sistema di Raffreddamento',c_rpm:'R.P.M.',c_fuel:'Carburante',c_gas:'Pedale del Gas',c_sus:'Sospensioni',c_tir:'Gomme',c_trb:'Turbo Compressore',c_wng:'Alettoni',c_heat:'Carta Heat aggiuntiva',
+s_4wd:'4RM',s_body:'CARR',s_brk:'FRENI',s_cool:'RAFFR',s_rpm:'RPM',s_fuel:'CARB',s_gas:'GAS',s_sus:'SOSP',s_tir:'GOMME',s_trb:'TURBO',s_wng:'ALETT',s_heat:'HEAT',heatUpgD:'Funziona come una normale carta Heat, ma parte mescolata nel mazzo.',spd:'Velocità'}
 };
 const t=(k,...a)=>{let s=(T[S.lang]&&T[S.lang][k])||T.en[k]||k;a.forEach((x,i)=>s=s.split('{'+i+'}').join(x));return s};
 
@@ -149,25 +243,89 @@ const COLORS=[
  {id:'white',hex:'#f1f1ec',ink:'#222',en:'White',it:'Bianco'},
  {id:'black',hex:'#2a2a2e',ink:'#fff',en:'Black',it:'Nero'},
  {id:'violet',hex:'#8e4fc9',ink:'#fff',en:'Violet',it:'Viola'},
- {id:'grey',hex:'#8a8f98',ink:'#fff',en:'Grey',it:'Grigio'}
+ {id:'grey',hex:'#8a8f98',ink:'#fff',en:'Grey',it:'Grigio'},
+ {id:'orange',hex:'#f28c28',ink:'#222',en:'Orange',it:'Arancione'},
+ {id:'cyan',hex:'#22c3d6',ink:'#222',en:'Cyan',it:'Ciano'},
+ {id:'brown',hex:'#8b5a2b',ink:'#fff',en:'Brown',it:'Marrone'},
+ {id:'pink',hex:'#f29ac0',ink:'#222',en:'Pink',it:'Rosa'}
 ];
+/* Upgrade catalogue. k=category, v=speed value(s) (several = choice), p=number of ✚ symbols,
+   h=Heat cost, d=scrap, l=corner limit, c=cooldown, s=slipstream, r=reduce stress, g=salvage,
+   dp=direct play, acc=accelerate, rf=refresh. Cards 1-17 Regular, 18-48 Advanced. */
+const U={
+1:{k:'4wd',v:[4],p:1},2:{k:'4wd',p:3},3:{k:'4wd',p:1,c:3},
+4:{k:'body',v:[3],r:2},5:{k:'body',v:[5],r:1},6:{k:'body',v:[1],r:3},
+7:{k:'brk',v:[1,2,3,4],h:1},8:{k:'brk',v:[1,3]},9:{k:'brk',v:[2,4]},10:{k:'brk',v:[1,5]},
+11:{k:'cool',v:[6],h:1,c:1},12:{k:'cool',v:[1],c:2},13:{k:'cool',v:[3],c:1},
+14:{k:'rpm',v:[1],s:2},15:{k:'rpm',v:[2],s:2},16:{k:'rpm',v:[3],s:2},
+17:{k:'heat'},
+18:{k:'body',v:[6],r:3,h:1},19:{k:'body',v:[2],r:1,c:1,d:2},20:{k:'body',v:[2],r:1,s:1},
+21:{k:'cool',v:[4],d:2,c:1},
+22:{k:'fuel',v:[2],g:2},23:{k:'fuel',p:1,g:2,c:1},
+24:{k:'gas',v:[1],dp:1,d:1},25:{k:'gas',v:[2],dp:1,d:2},26:{k:'gas',v:[3],dp:1,d:3},27:{k:'gas',v:[4],dp:1,h:1,c:1},28:{k:'gas',v:[1],dp:1,acc:1,d:5},
+29:{k:'rpm',p:1,s:3},30:{k:'rpm',v:[1],h:1,s:3},31:{k:'rpm',v:[1,2],s:1},
+32:{k:'sus',v:[2],rf:1,r:1},33:{k:'sus',v:[2],rf:1,c:1},34:{k:'sus',v:[4],rf:1},35:{k:'sus',v:[1],rf:1,s:1},
+36:{k:'tir',v:[2],l:-1,c:3},37:{k:'tir',v:[1],d:2,l:1},38:{k:'tir',v:[2],d:2,l:1},39:{k:'tir',v:[3],l:-1,c:2},40:{k:'tir',p:1,l:1,s:1,c:1},41:{k:'tir',p:2,l:2},
+42:{k:'trb',v:[7],h:2,c:3},43:{k:'trb',v:[8],h:1,d:6},
+44:{k:'wng',v:[4],h:1,d:2,l:2},45:{k:'wng',v:[3],h:1,d:2,l:2},46:{k:'wng',v:[6],h:2,l:3},
+47:{k:'4wd',p:1,acc:1},
+48:{k:'heat'}
+};
+const UN=Object.keys(U).map(Number);
+const CATS=['4wd','body','brk','cool','rpm','fuel','gas','sus','tir','trb','wng','heat'];
+const SYM=['dp','rf','acc','h','d','l','r','s','g','c'];
+const MAND={h:1,d:1,l:1};
+const isReg=n=>n<=17;
+const sgn=n=>(n>0?'+':'')+n;
+const spLabel=d=>d.k==='heat'?'🔥':(d.v?d.v.join('|'):'')+'✚'.repeat(d.p||0);
+const symGlyph=(k,n)=>k==='l'?sgn(n):k==='dp'?'✋':k==='acc'?'✚':k==='rf'?'↺':k==='s'?'+'+n:String(n);
+const symLg=(k,n)=>({h:'🔥',d:'🗑',l:'',c:'🌡',s:'»',r:'',g:'👁',dp:'',acc:'',rf:''}[k])+symGlyph(k,n);
+const sy=(k,n,lg)=>`<span class="sy sy-${k}${MAND[k]?' m':''}${lg?' lg':''}">${lg?symLg(k,n):symGlyph(k,n)}</span>`;
+const symTxt=(k,n)=>t('t_'+k,k==='l'?sgn(n):n);
+const syms=d=>SYM.filter(k=>d[k]);
+
 const KEY='heat-companion-v1';
-const DEF=()=>({started:false,players:[],active:0,nextId:1,lang:(navigator.language||'en').toLowerCase().startsWith('it')?'it':'en',opts:{heat:6,stress:3,start:true,hand:7}});
+const DEF=()=>({started:false,players:[],active:0,nextId:1,pool:[],lang:(navigator.language||'en').toLowerCase().startsWith('it')?'it':'en',opts:{heat:6,stress:3,start:true,hand:7}});
 let S=DEF();
-try{const raw=localStorage.getItem(KEY);if(raw){const o=JSON.parse(raw);S=Object.assign(DEF(),o);S.opts=Object.assign(DEF().opts,o.opts||{});}}catch(e){}
-const ui={sel:new Set(),screen:null,limit:'',payN:1,coolN:1,adv:false,newName:'',newColor:null};
+function normalize(){
+  S.opts=Object.assign(DEF().opts,S.opts||{});
+  if(!Array.isArray(S.pool))S.pool=[];
+  S.players.forEach(p=>{
+    if(!Array.isArray(p.upg))p.upg=[];
+    if(!Array.isArray(p.rm))p.rm=[];
+    if(p.gas==null)p.gas=false;
+    (p.play||[]).forEach(s=>{if(!s.repls){s.repls=s.repl?[s.repl]:[];delete s.repl}if(!s.done)s.done={};if(s.ch==null)s.ch=0;if(s.plusN==null)s.plusN=s.repls.length});
+  });
+}
+try{const raw=localStorage.getItem(KEY);if(raw){S=Object.assign(DEF(),JSON.parse(raw));}}catch(e){}
+normalize();
+const ui={sel:new Set(),screen:null,limit:'',payN:1,coolN:1,adv:false,leg:false,newName:'',newColor:null,sheet:null,filt:'all'};
 let hist=[],pending=[];
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 const col=p=>COLORS.find(c=>c.id===p.color)||COLORS[0];
-const mk=(ty,v=0)=>({id:S.nextId++,t:ty,v});   // t: b=Base, s=Stress, h=Heat, u=Upgrade
+const mk=(ty,v=0,n=0)=>{const c={id:S.nextId++,t:ty,v};if(n)c.n=n;return c};   // t: b=Base, s=Stress, h=Heat, u=Upgrade (n = catalogue number)
 const L=(p,m)=>{p.log.unshift(m);if(p.log.length>40)p.log.length=40};
 const gearCool=g=>g===1?3:g===2?1:0;
-const val=c=>c&&(c.t==='b'||c.t==='u')?c.v:0;
-const slotVal=s=>val(s.card)+(s.repl?s.repl.v:0);
-const speed=p=>p.play.reduce((a,s)=>a+slotVal(s),0)+(p.adrS?1:0)+(p.adj||0);
-const coolAllow=p=>gearCool(p.gear)+(p.adrC?1:0);
+const cdef=c=>c&&c.t==='u'&&c.n?U[c.n]:null;
+const udef=s=>s.void?null:cdef(s.card);
+const cname=c=>{const d=cdef(c);return d?t('c_'+d.k):''};
+function slotVal(s){
+  let v=0;const c=s.card;
+  if(c&&!s.void){const d=cdef(c);if(d)v+=d.v?d.v[Math.min(s.ch||0,d.v.length-1)]:0;else if(c.t==='b'||c.t==='u')v+=c.v}
+  return v+(s.repls||[]).reduce((a,r)=>a+r.v,0);
+}
+function fx(p){
+  const o={cool:0,slip:0,lim:0,plus:0,acc:0};
+  p.play.forEach(s=>{o.plus+=s.plusN||0;const d=udef(s);if(!d)return;o.cool+=d.c||0;o.slip+=d.s||0;o.lim+=d.l||0;if(d.acc&&s.done.acc)o.acc++});
+  return o;
+}
+function speed(p){const f=fx(p);return p.play.reduce((a,s)=>a+slotVal(s),0)+(p.adrS?1:0)+(p.adj||0)+f.plus*f.acc}
+const coolAllow=p=>gearCool(p.gear)+(p.adrC?1:0)+fx(p).cool;
+const needRm=p=>S.opts.start?Math.max(0,Math.min(3,p.upg.length-2)):0;
+function fixRm(p){const n=needRm(p);if(n===3)p.rm=['h','5','0'];else if(p.rm.length>n)p.rm=p.rm.slice(0,n)}
+const owner=n=>S.players.find(p=>p.upg.includes(n));
 
 /* ---------- deck engine ---------- */
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
@@ -181,7 +339,7 @@ function drawOne(p){
   return p.deck.pop();
 }
 function drawTo(p){while(p.hand.length<S.opts.hand){const c=drawOne(p);if(!c)break;p.hand.push(c)}}
-// Stress / + symbol rule: reveal until a Base card appears, non-base cards go to discard
+// Stress / ✚ symbol rule: reveal until a Base card appears, non-base cards go to discard
 function revealBase(p){
   if(![...p.deck,...p.discard].some(c=>c.t==='b'))return null;
   for(let g=0;g<1000;g++){
@@ -191,22 +349,48 @@ function revealBase(p){
   }
   return null;
 }
-function addPlus(p,label){p.play.push({card:null,label,repl:revealBase(p)});if(!p.play[p.play.length-1].repl)pending.push(t('nobase'))}
+function addPlusTo(p,s,n){for(let i=0;i<n;i++){const b=revealBase(p);if(b){s.repls.push(b);s.plusN++}else pending.push(t('nobase'))}}
+function newSlot(card,label){return{card:card||null,label:label||'',repls:[],ch:0,done:{},plusN:0}}
+// put a card from hand into the play area, resolving ✚ symbols and the Heat cost
+function makeSlot(p,c){
+  const s=newSlot(c);
+  if(c.t==='s')addPlusTo(p,s,1);
+  const d=cdef(c);
+  if(d){
+    if(d.h){
+      if(p.engine>=d.h)payHeat(p,d.h);
+      else{ // cannot pay: discard the card and replace it with a Base card (not a ✚ symbol)
+        s.void=true;p.discard.push(c);
+        const b=revealBase(p);if(b)s.repls.push(b);else pending.push(t('nobase'));
+        pending.push(t('voidmsg',t('c_'+d.k)));return s;
+      }
+    }
+    addPlusTo(p,s,d.p||0);
+  }
+  return s;
+}
 function payHeat(p,n){p.engine-=n;for(let i=0;i<n;i++)p.discard.push(mk('h'));L(p,t('lPay',n))}
-function newPlayer(color,name){return{id:S.nextId++,color,name,deck:[],hand:[],discard:[],play:[],engine:0,gear:1,played:false,adrS:false,adrC:false,adj:0,accel:false,coolUsed:0,log:[]}}
+function scrap(p,n){for(let i=0;i<n;i++){const c=drawOne(p);if(c)p.discard.push(c)}L(p,t('lScrap',n))}
+function newPlayer(color,name){return{id:S.nextId++,color,name,deck:[],hand:[],discard:[],play:[],engine:0,gear:1,played:false,adrS:false,adrC:false,adj:0,accel:false,gas:false,coolUsed:0,log:[],upg:[],rm:[]}}
 function buildDeck(p){
   const o=S.opts;p.deck=[];p.hand=[];p.discard=[];p.play=[];
   for(let v=1;v<=4;v++)for(let i=0;i<3;i++)p.deck.push(mk('b',v));
   for(let i=0;i<o.stress;i++)p.deck.push(mk('s'));
-  if(o.start)p.deck.push(mk('u',0),mk('u',5),mk('h'));
-  p.engine=o.heat;p.gear=1;p.played=false;p.adrS=p.adrC=p.accel=false;p.adj=0;p.coolUsed=0;p.log=[];
+  if(o.start){
+    fixRm(p);
+    if(!p.rm.includes('0'))p.deck.push(mk('u',0));
+    if(!p.rm.includes('5'))p.deck.push(mk('u',5));
+    if(!p.rm.includes('h'))p.deck.push(mk('h'));
+  }
+  p.upg.forEach(n=>p.deck.push(U[n].k==='heat'?mk('h'):mk('u',0,n)));
+  p.engine=o.heat;p.gear=1;resetTurnFlags(p);p.log=[];
   shuffle(p.deck);drawTo(p);
 }
-function resetTurnFlags(p){p.played=false;p.adrS=p.adrC=p.accel=false;p.adj=0;p.coolUsed=0}
+function resetTurnFlags(p){p.played=false;p.adrS=p.adrC=p.accel=p.gas=false;p.adj=0;p.coolUsed=0}
 
 /* ---------- UI helpers ---------- */
 let toastT;
-function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>e.classList.remove('on'),2400)}
+function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>e.classList.remove('on'),2600)}
 function modal({title,msg='',input=null,ok=t('ok'),cancel=true}){
   return new Promise(res=>{
     const m=$('#modal');
@@ -215,6 +399,22 @@ function modal({title,msg='',input=null,ok=t('ok'),cancel=true}){
     const close=v=>{m.classList.remove('on');m.innerHTML='';res(v)};
     $('#mo').onclick=()=>close(input!==null?parseInt($('#minp').value,10):true);
     if(cancel)$('#mc').onclick=()=>close(input!==null?null:false);
+  });
+}
+// pick up to `max` cards from a list; resolves with the chosen ids (or null)
+function pickCards(title,msg,cards,max){
+  return new Promise(res=>{
+    const m=$('#modal'),sel=new Set();
+    m.innerHTML=`<div class="mbox"><h3>${esc(title)}</h3><p>${esc(msg)}</p><div class="pick">${cards.map(c=>cardHTML(c,{pick:1})).join('')}</div><div class="mrow"><button class="btn ghost" id="mc">${t('cancel')}</button><button class="btn" id="mo">${t('ok')} (0/${max})</button></div></div>`;
+    m.classList.add('on');
+    m.querySelectorAll('[data-pick]').forEach(b=>b.onclick=()=>{
+      const id=+b.dataset.pick;
+      if(sel.has(id)){sel.delete(id);b.classList.remove('sel')}else if(sel.size<max){sel.add(id);b.classList.add('sel')}
+      $('#mo').textContent=`${t('ok')} (${sel.size}/${max})`;
+    });
+    const close=v=>{m.classList.remove('on');m.innerHTML='';res(v)};
+    $('#mo').onclick=()=>close([...sel]);
+    $('#mc').onclick=()=>close(null);
   });
 }
 function act(fn){
@@ -227,23 +427,97 @@ const LIM={heat:[0,10],stress:[0,8],hand:[4,10],payN:[1,10],coolN:[1,10]};
 
 /* ---------- rendering ---------- */
 const RANK={b:0,u:1,s:2,h:3};
+function upgInner(d){
+  const lab=spLabel(d);
+  return `<span class="ub${lab.length>3?' sm':''}">${lab}</span><span class="i">${t('s_'+d.k)}</span><span class="sys">${syms(d).map(k=>sy(k,d[k])).join('')}</span>`;
+}
 function cardHTML(c,o={}){
-  const tag=o.act?'button':'div';
-  let inner='';
-  if(c.t==='b')inner=`<span class="v">${c.v}</span><span class="i">Base</span>`;
+  const tag=o.act||o.pick?'button':'div';
+  const d=cdef(c);
+  let inner='',cls=c.t;
+  if(d){inner=upgInner(d);cls='g'}
+  else if(c.t==='b')inner=`<span class="v">${c.v}</span><span class="i">Base</span>`;
   else if(c.t==='s')inner=`<span class="v">✚</span><span class="i">Stress</span>`;
   else if(c.t==='h')inner=`<span class="v">🔥</span><span class="i">Heat</span>`;
   else inner=`<span class="v">${c.v}</span><span class="i">⬆ Upg</span>`;
-  return `<${tag} class="card ${c.t}${o.sel?' sel':''}${o.dis?' dis':''}" ${o.act?`data-a="sel" data-id="${c.id}"${o.dis?' disabled':''}`:''}>${inner}</${tag}>`;
+  const attr=o.act?`data-a="sel" data-id="${c.id}"${o.dis?' disabled':''}`:o.pick?`data-pick="${c.id}"`:'';
+  return `<${tag} class="card ${cls}${o.sel?' sel':''}${o.dis?' dis':''}${o.void?' void':''}" ${attr}>${inner}</${tag}>`;
 }
-const slotHTML=s=>`<div class="slot">${s.card?cardHTML(s.card):`<div class="pl">${esc(s.label)}</div>`}${s.repl?`<div class="arr">▼</div>${cardHTML(s.repl)}`:(s.card&&s.card.t==='s'?'<div class="arr">∅</div>':'')}</div>`;
+function slotHTML(s,i){
+  const d=udef(s);
+  let h=`<div class="slot">`;
+  h+=s.card?cardHTML(s.card,{void:s.void}):`<div class="pl">${esc(s.label)}</div>`;
+  if(d&&d.v&&d.v.length>1)h+=`<div class="chs">${d.v.map((v,j)=>`<button class="${(s.ch||0)===j?'on':''}" data-a="ch" data-i="${i}" data-c="${j}">${v}</button>`).join('')}</div>`;
+  if(s.repls.length)h+=s.repls.map(r=>`<div class="arr">${s.void?'✖':'▼'}</div>${cardHTML(r)}`).join('');
+  else if(s.card&&s.card.t==='s')h+='<div class="arr">∅</div>';
+  return h+'</div>';
+}
+function fxHTML(p){
+  let rows='';
+  p.play.forEach((s,i)=>{
+    const d=udef(s);if(!d)return;
+    syms(d).forEach(k=>{
+      if(k==='dp')return;
+      const n=d[k],lab=`${sy(k,n,1)}<span>${symTxt(k,n)} <span class="mut">· ${t('c_'+d.k)}</span></span>`;
+      if(k==='h')rows+=`<div class="fxb done">${lab}<span class="st">✓ ${t('paid')}</span></div>`;
+      else if(k==='l'||k==='c'||k==='s')rows+=`<div class="fxb">${lab}<span class="st">${t('auto')}</span></div>`;
+      else if(k==='acc')rows+=`<button class="fxb" data-a="fx" data-i="${i}" data-k="acc">${lab}<span class="st">${s.done.acc?t('on')+' +'+fx(p).plus:t('off')}</span></button>`;
+      else if(k==='rf')rows+=`<button class="fxb" data-a="fx" data-i="${i}" data-k="rf">${lab}<span class="st">${s.done.rf?t('on'):t('off')}</span></button>`;
+      else{const dn=s.done[k];rows+=`<button class="fxb${k==='d'?' mand':''}${dn?' done':''}" data-a="fx" data-i="${i}" data-k="${k}" ${dn?'disabled':''}>${lab}<span class="st">${dn?'✓ '+t('done'):(k==='d'?'! ':'')+t('apply')}</span></button>`}
+    });
+  });
+  return rows?`<h2 style="margin-top:14px">${t('symbols')}</h2><div class="fx">${rows}</div>`:'';
+}
 const selectable=(p,c)=>p.played?(c.t==='b'||c.t==='u'):c.t!=='h';
+const initials=n=>{const w=String(n).trim().split(/\s+/).filter(Boolean);return ((w.length>1?w[0][0]+w[1][0]:(w[0]||'?').slice(0,2))).toUpperCase()};
 function header(setup){
-  return `<header><h1>🏁 Heat <span>Companion</span> <small style="font-size:11px;font-weight:600;color:var(--mut);letter-spacing:.04em">fan-made</small></h1>
+  return `<header><h1>🏁 Heat <span>Companion</span> <small style="display:block;font-size:10px;font-weight:600;color:var(--mut);letter-spacing:.04em;line-height:1">fan-made</small></h1>
   <button class="ib" data-a="undo" aria-label="${t('undo')}" ${hist.length?'':'disabled'}>↶</button>
   <button class="ib" data-a="setup" aria-label="${t('setup')}">${setup&&S.started?'🏎':'👥'}</button>
   <button class="ib" data-a="lang" aria-label="${t('lang')}" style="font-size:13px;font-weight:700">${S.lang.toUpperCase()}</button>
   ${S.started?`<button class="ib" data-a="newrace" aria-label="${t('newRace')}">⟳</button>`:''}</header>`;
+}
+function legendHTML(){
+  return SYM.map(k=>`<div class="leg">${sy(k,k==='l'?1:k==='s'?1:'#',1)}<span><b>${t('n_'+k)} <span class="mut">· ${MAND[k]?t('mand'):t('opt')}</span></b><span class="tx">${t('d_'+k)}</span></span></div>`).join('');
+}
+function urowHTML(n,o){
+  const d=U[n];
+  const body=d.k==='heat'?`<span class="mut">${t('heatUpgD')}</span>`:`<span class="bd">${syms(d).map(k=>sy(k,d[k],1)).join('')||''}</span><span class="mut">${[t('spd')+' '+spLabel(d)].concat(syms(d).map(k=>symTxt(k,d[k]))).join(' · ')}</span>`;
+  return `<button class="urow${o.on?' on':''}" data-a="${o.a}" data-n="${n}" ${o.dis?'disabled':''}>
+    <div class="card g">${upgInner(d)}</div>
+    <span class="ut"><b>#${n} · ${t('c_'+d.k)}</b>${body}${o.note?`<span class="mut" style="display:block">${o.note}</span>`:''}</span>
+    <span class="ck">${o.on?'✓':''}</span></button>`;
+}
+function listHTML(nums,rowFn){
+  let h='';
+  CATS.forEach(k=>{const ns=nums.filter(n=>U[n].k===k);if(!ns.length)return;h+=`<div class="cat">${t('c_'+k)}</div>`+ns.map(rowFn).join('')});
+  return h;
+}
+function sheetHTML(){
+  const sh=ui.sheet;if(!sh)return'';
+  const filt=`<div class="filt">${[['all','fAll'],['reg','fReg'],['adv','fAdv']].map(([k,l])=>`<button class="${ui.filt===k?'on':''}" data-a="filt" data-f="${k}">${t(l)}</button>`).join('')}</div>`;
+  const pass=n=>ui.filt==='all'||(ui.filt==='reg')===isReg(n);
+  let title,body;
+  if(sh.mode==='pool'){
+    title=`${t('poolT')} (${S.pool.length})`;
+    body=`<div class="note">${t('poolHint')}</div>${filt}`+listHTML(UN.filter(pass),n=>{const ow=owner(n);return urowHTML(n,{a:'ptog',on:S.pool.includes(n),note:(isReg(n)?t('reg'):t('adv'))+(ow?' · '+esc(ow.name):'')})})
+      +`<div class="cat">${t('legend')}</div><div class="note">${legendHTML()}</div>`;
+  }else{
+    const p=S.players.find(x=>x.id===sh.id);if(!p){ui.sheet=null;return''}
+    title=t('pilotUpg',esc(p.name));
+    const need=needRm(p),n=p.upg.length;
+    let rm='';
+    if(S.opts.start){
+      if(need===0)rm=`<div class="note">${t('rmNone',n)}<br><span class="mut">${t('rmHint')}</span></div>`;
+      else rm=`<div class="note${p.rm.length<need?' warn':''}"><b>${t('rmTitle',`${p.rm.length}/${need}`)}</b><br><span class="mut">${t('rmHint')}</span>
+        <div class="chips">${[['h','🔥 Heat'],['5','5'],['0','0']].map(([k,l])=>`<button class="${p.rm.includes(k)?'on':''}" data-a="rmtog" data-k="${k}" ${need===3?'disabled':''}>${l}</button>`).join('')}</div></div>`;
+    }
+    const pool=[...S.pool].sort((a,b)=>a-b);
+    body=rm+(pool.length?listHTML(pool,x=>{const ow=owner(x),other=ow&&ow.id!==p.id;return urowHTML(x,{a:'utog',on:p.upg.includes(x),dis:other,note:other?t('takenBy',esc(ow.name)):''})})
+      :`<div class="note">${t('poolEmpty')}</div><button class="btn big" data-a="sheet" data-m="pool">${t('openPool')}</button>`)
+      +`<p class="mut">${t('applyNote')}</p>`;
+  }
+  return `<div class="sheet"><div class="sheethead"><h3>${title}</h3><button class="btn sm" data-a="sheetclose">${t('close')}</button></div><div class="sheetbody">${body}</div></div>`;
 }
 function renderSetup(){
   const taken=new Set(S.players.map(p=>p.color));
@@ -251,11 +525,15 @@ function renderSetup(){
   if(!ui.newColor||taken.has(ui.newColor))ui.newColor=free[0]?free[0].id:null;
   const o=S.opts;
   return `<section class="panel"><h2>${t('players')}</h2>
-   ${S.players.map(p=>`<div class="prow"><span class="dot" style="background:${col(p).hex}"></span><input data-in="pname" data-id="${p.id}" value="${esc(p.name)}" maxlength="20"><button class="x" data-a="rm" data-id="${p.id}">✕</button></div>`).join('')||`<p class="mut">${t('nop')}</p>`}
+   ${S.players.map(p=>`<div class="prow"><span class="dot" style="background:${col(p).hex}"></span><input data-in="pname" data-id="${p.id}" value="${esc(p.name)}" maxlength="20"><button class="ubtn${p.rm.length<needRm(p)?' warn':''}" data-a="sheet" data-m="pilot" data-id="${p.id}">⬆ ${p.upg.length}</button><button class="x" data-a="rm" data-id="${p.id}">✕</button></div>`).join('')||`<p class="mut">${t('nop')}</p>`}
   </section>
   <section class="panel"><h2>${t('addcar')}</h2>
    <div class="swatches">${free.map(c=>`<button class="sw ${ui.newColor===c.id?'on':''}" style="background:${c.hex}" data-a="color" data-c="${c.id}" aria-label="${c[S.lang]}"></button>`).join('')}</div>
    <div class="prow"><input data-in="newname" placeholder="${t('pname')}" value="${esc(ui.newName)}" maxlength="20"><button class="btn" data-a="add" ${free.length?'':'disabled'}>${t('add')}</button></div>
+  </section>
+  <section class="panel"><h2>${t('upgs')}</h2>
+   <div class="prow"><span class="lbl"><b>${t('poolT')}</b><br><span class="mut">${t('poolN',S.pool.length)}</span></span><button class="btn" data-a="sheet" data-m="pool">${t('choose')}</button></div>
+   <p class="mut" style="margin:0">${t('rmHint')}</p>
   </section>
   <section class="panel"><h2>${t('opts')}</h2>
    <div class="prow"><span class="lbl">${t('heatEngine')}</span>${stepper('opts','heat',o.heat)}</div>
@@ -266,38 +544,41 @@ function renderSetup(){
   </section>
   ${S.started&&S.players.length?`<button class="btn big" data-a="backgame">${t('back')}</button><div style="height:10px"></div><button class="btn sec big" data-a="newrace">${t('restartRace')}</button>`:`<button class="btn big" data-a="start">${t('startRace')}</button>`}`;
 }
+function railHTML(){
+  return `<nav class="rail">${S.players.map((q,i)=>{const c=col(q);return `<button class="rb ${i===S.active?'on':''}" style="background:${c.hex};color:${c.ink}" data-a="tab" data-i="${i}" aria-label="${esc(q.name)}">${esc(initials(q.name))}<i class="rg">${q.gear}</i><i class="rh">${q.engine}</i>${q.played?'<i class="rp"></i>':''}</button>`}).join('')}</nav>`;
+}
 function renderGame(){
   if(S.active>=S.players.length)S.active=0;
   const p=S.players[S.active],c=col(p);
   const top=p.discard.length?p.discard[p.discard.length-1]:null;
-  const topTxt=top?(top.t==='b'||top.t==='u'?top.v:top.t==='s'?'✚':'🔥'):'–';
-  const hand=[...p.hand].sort((a,b)=>RANK[a.t]-RANK[b.t]||a.v-b.v);
+  const topTxt=top?(cdef(top)?'⬆':top.t==='b'||top.t==='u'?top.v:top.t==='s'?'✚':'🔥'):'–';
+  const hand=[...p.hand].sort((a,b)=>RANK[a.t]-RANK[b.t]||(a.n||0)-(b.n||0)||a.v-b.v);
   ui.sel.forEach(id=>{if(!p.hand.some(x=>x.id===id))ui.sel.delete(id)});
   const playable=p.hand.filter(x=>x.t!=='h').length;
   const nSel=ui.sel.size;
-  let h=`<div class="tabs">${S.players.map((q,i)=>`<button class="tab ${i===S.active?'on':''}" style="--pc:${col(q).hex}" data-a="tab" data-i="${i}"><span class="dot" style="background:${col(q).hex}"></span>${esc(q.name)}${q.played?' <span class="tick">●</span>':''}</button>`).join('')}</div>`;
-  h+=`<section class="panel me" style="--pc:${c.hex};--ink:${c.ink}">
+  let h=`<section class="panel me" style="--pc:${c.hex};--ink:${c.ink}">
     <div class="pname"><span class="dot" style="background:${c.hex}"></span>${esc(p.name)}</div>
     <div class="stats">
      <div class="stat"><b>${p.deck.length}</b><span>${t('deck')}</span></div>
-     <div class="stat"><b>${p.discard.length}</b><span>${t('discard')} · ${t('top')} ${topTxt}</span></div>
+     <div class="stat"><b>${p.discard.length}</b><span>${t('discard')} · ${topTxt}</span></div>
      <div class="stat heat"><b>${p.engine}</b><span>🔥 ${t('engine')}</span></div>
      <div class="stat"><b>${p.hand.length}/${S.opts.hand}</b><span>${t('hand')}</span></div>
     </div>
-    <div class="flames">${'🔥'.repeat(Math.min(p.engine,14))}</div>
   </section>`;
   if(!p.played){
     h+=`<section class="panel" style="--pc:${c.hex};--ink:${c.ink}"><h2>${t('gear')}</h2>
       <div class="gears">${[1,2,3,4].map(g=>`<button class="gear ${p.gear===g?'on':''}" data-a="gear" data-g="${g}">${g}</button>`).join('')}</div>
       <div class="mut">${t('gearInfo',p.gear,gearCool(p.gear))}</div></section>`;
   }else{
-    const allow=coolAllow(p)-p.coolUsed;
+    const f=fx(p),allow=Math.max(0,coolAllow(p)-p.coolUsed),lim=parseInt(ui.limit,10);
     h+=`<section class="panel" style="--pc:${c.hex}"><h2>${t('playArea')}</h2>
       <div class="play">${p.play.map(slotHTML).join('')}</div>
       <div class="speedbox"><span>${t('speed')}</span><b>${speed(p)}</b></div>
+      <div class="sum"><span>🌡 ${t('sumCool',allow)}</span>${f.slip?`<span>» ${t('sumSlip',f.slip)}</span>`:''}${f.lim?`<span>◎ ${t('sumLim',sgn(f.lim))}</span>`:''}</div>
+      ${fxHTML(p)}
       <div class="row wrap">
-        <button class="btn sec" data-a="accel" ${p.accel?'disabled':''}>⚡ ${t('accel')}</button>
-        <button class="btn sec" data-a="plus">${t('plus')}</button>
+        <button class="btn sec sm" data-a="accel" ${p.accel?'disabled':''}>⚡ ${t('accel')}</button>
+        <button class="btn sec sm" data-a="plus">${t('plus')}</button>
       </div>
       <div class="row wrap">
         <button class="btn sec sm ${p.adrS?'on':''}" data-a="adrS">${t('adrS')}</button>
@@ -306,7 +587,7 @@ function renderGame(){
       <div class="prow" style="margin-top:10px"><span class="lbl">${t('adj')}</span><div class="step"><button data-a="adj" data-d="-1">−</button><b>${p.adj>0?'+':''}${p.adj}</b><button data-a="adj" data-d="1">+</button></div></div>
       <h2 style="margin-top:14px">${t('curve')}</h2>
       <div class="prow"><input data-in="limit" type="number" inputmode="numeric" placeholder="${t('limitPh')}" value="${esc(ui.limit)}"><button class="btn" data-a="curve">${t('check')}</button></div>
-      <p class="mut" style="margin:0">${t('coolLeft',Math.max(0,allow))}</p>
+      ${f.lim?`<p class="mut" id="limeff" style="margin:0">${isNaN(lim)?t('sumLim',sgn(f.lim)):t('limEff',lim,sgn(f.lim),lim+f.lim)}</p>`:''}
     </section>`;
   }
   h+=`<section class="panel"><h2>${t('hand')}</h2>
@@ -315,7 +596,8 @@ function renderGame(){
     h+=`<div class="row"><button class="btn big" data-a="play" ${nSel===p.gear?'':'disabled'}>▶ ${t('playN',nSel,p.gear)}</button></div>`;
     if(playable<p.gear)h+=`<p class="mut">${t('jam')}</p><button class="btn sec big" data-a="jam">${t('jamBtn')}</button>`;
   }else{
-    h+=`<div class="row wrap"><button class="btn sec" data-a="discardsel" ${nSel?'':'disabled'}>🗑 ${t('discardSel')} (${nSel})</button></div>
+    const one=nSel===1?p.hand.find(x=>ui.sel.has(x.id)):null,dp=one&&cdef(one)&&cdef(one).dp;
+    h+=`<div class="row wrap">${dp?`<button class="btn" data-a="direct">✋ ${t('direct')}</button>`:''}<button class="btn sec" data-a="discardsel" ${nSel?'':'disabled'}>🗑 ${t('discardSel')} (${nSel})</button></div>
         <div class="row"><button class="btn big" data-a="endturn">✔ ${t('endTurn',S.opts.hand)}</button></div>`;
   }
   h+=`</section>`;
@@ -323,18 +605,22 @@ function renderGame(){
     <div class="prow"><span class="lbl">${t('payHeat')}</span>${stepper('ui','payN',ui.payN)}<button class="btn sm" data-a="pay">${t('pay')}</button></div>
     <div class="prow"><span class="lbl">${t('coolHeat')}</span>${stepper('ui','coolN',ui.coolN)}<button class="btn sm" data-a="cool">${t('cool')}</button></div>
   </section>`;
-  h+=`<section class="panel"><h2 data-a="advtoggle" style="cursor:pointer">${ui.adv?'▾':'▸'} ${t('tools')}</h2>${ui.adv?`
-    <p class="mut" style="margin:0 0 8px">${t('addDeck')}</p>
-    <div class="row wrap" style="margin-top:0"><button class="btn sec" data-a="addcard" data-k="s">${t('addStress')}</button><button class="btn sec" data-a="addcard" data-k="h">${t('addHeat')}</button><button class="btn sec" data-a="addcard" data-k="u">${t('addUpg')}</button></div>
+  h+=`<section class="panel"><h2 data-a="legtoggle" style="cursor:pointer;margin:0">${ui.leg?'▾':'▸'} ${t('legend')}</h2>${ui.leg?`<div style="margin-top:10px">${legendHTML()}</div>`:''}</section>`;
+  h+=`<section class="panel"><h2 data-a="advtoggle" style="cursor:pointer;margin:0">${ui.adv?'▾':'▸'} ${t('tools')}</h2>${ui.adv?`
+    <p class="mut" style="margin:10px 0 8px">${t('addDeck')}</p>
+    <div class="row wrap" style="margin-top:0"><button class="btn sec sm" data-a="addcard" data-k="s">${t('addStress')}</button><button class="btn sec sm" data-a="addcard" data-k="h">${t('addHeat')}</button><button class="btn sec sm" data-a="addcard" data-k="u">${t('addUpg')}</button></div>
     <h2 style="margin-top:16px">${t('log')}</h2><div class="log">${p.log.map(l=>`<div>${esc(l)}</div>`).join('')}</div>`:''}</section>`;
-  return h;
+  return `<div class="wrap">${railHTML()}<main>${h}</main></div>`;
 }
 function render(){
   document.documentElement.lang=S.lang;
+  const sb=$('.sheetbody'),st=sb?sb.scrollTop:0,rl=$('.rail'),rt=rl?rl.scrollTop:0;
   const setup=ui.screen==='setup'||!S.started||!S.players.length;
   const p=S.players[S.active];
   document.body.style.setProperty('--pc',p?col(p).hex:'#888');
-  $('#app').innerHTML=header(setup)+(setup?renderSetup():renderGame())+`<footer class="disc">${t('disc')}</footer>`;
+  $('#app').innerHTML=header(setup)+(setup?renderSetup():renderGame())+`<footer class="disc">${t('disc')}</footer>`+sheetHTML();
+  const nb=$('.sheetbody');if(nb)nb.scrollTop=st;
+  const nr=$('.rail');if(nr)nr.scrollTop=rt;
 }
 
 /* ---------- actions ---------- */
@@ -356,11 +642,31 @@ function doPlay(p){
   act(()=>{
     const ids=new Set(cards.map(c=>c.id));
     p.hand=p.hand.filter(c=>!ids.has(c.id));
-    p.play=cards.map(c=>({card:c,repl:null,label:''}));
-    p.play.forEach(s=>{if(s.card.t==='s'){s.repl=revealBase(p);if(!s.repl)pending.push(t('nobase'))}});
-    p.played=true;p.coolUsed=0;ui.sel.clear();
     L(p,t('lPlay',p.gear));
+    p.play=cards.map(c=>makeSlot(p,c));
+    p.played=true;p.coolUsed=0;ui.sel.clear();
   });
+}
+function doDirect(p){
+  const c=p.hand.find(x=>ui.sel.has(x.id));if(!c||!cdef(c)||!cdef(c).dp)return;
+  act(()=>{p.hand=p.hand.filter(x=>x.id!==c.id);L(p,t('lDirect'));p.play.push(makeSlot(p,c));ui.sel.clear()});
+}
+async function doFx(p,i,k){
+  const s=p.play[i],d=s&&udef(s);if(!d||!d[k])return;
+  if(k==='rf'||k==='acc'){act(()=>{s.done[k]=!s.done[k]});return}
+  if(s.done[k])return;
+  if(k==='d'){act(()=>{scrap(p,d.d);s.done.d=true});return}
+  if(k==='r'){
+    const n=Math.min(d.r,p.hand.filter(c=>c.t==='s').length);
+    if(!n){toast(t('noStress'));return}
+    act(()=>{let q=n;p.hand=p.hand.filter(c=>{if(q>0&&c.t==='s'){q--;p.discard.push(c);return false}return true});s.done.r=true;L(p,t('lStress',n))});return;
+  }
+  if(k==='g'){
+    if(!p.discard.length){toast(t('salvEmpty'));return}
+    const ids=await pickCards(t('salvT'),t('salvM',d.g),p.discard,d.g);
+    if(!ids||!ids.length)return;
+    act(()=>{const set=new Set(ids),out=p.discard.filter(c=>set.has(c.id));p.discard=p.discard.filter(c=>!set.has(c.id));p.deck.push(...out);shuffle(p.deck);s.done.g=true;L(p,t('lSalv',out.length))});
+  }
 }
 async function doJam(p){
   if(!await modal({title:t('jamTitle'),msg:t('jamMsg'),ok:t('ok')}))return;
@@ -377,15 +683,22 @@ async function doJam(p){
 function doEnd(p){
   act(()=>{
     const sp=speed(p);
-    p.play.forEach(s=>{if(s.card)p.discard.push(s.card);if(s.repl)p.discard.push(s.repl)});
+    // mandatory Scrap symbols that were not applied yet
+    p.play.forEach(s=>{const d=udef(s);if(d&&d.d&&!s.done.d){scrap(p,d.d);s.done.d=true;pending.push(t('scrapAuto'))}});
+    const back=[];
+    p.play.forEach(s=>{
+      if(s.card&&!s.void){if(s.done.rf&&udef(s)&&udef(s).rf)back.push(s.card);else p.discard.push(s.card)}
+      s.repls.forEach(r=>p.discard.push(r));
+    });
+    back.forEach(c=>p.deck.push(c)); // Refresh: back on top of the draw deck
     p.play=[];resetTurnFlags(p);ui.sel.clear();ui.limit='';
     drawTo(p);L(p,t('lEnd',sp));
   });
 }
 async function doCurve(p){
-  const lim=parseInt(ui.limit,10);
-  if(isNaN(lim)){toast(t('enterlimit'));return}
-  const sp=speed(p),ex=sp-lim;
+  const raw=parseInt(ui.limit,10);
+  if(isNaN(raw)){toast(t('enterlimit'));return}
+  const lim=raw+fx(p).lim,sp=speed(p),ex=sp-lim;
   if(ex<=0){toast(t('curveok',sp,lim));return}
   if(p.engine>=ex){
     if(await modal({title:t('overspeed'),msg:t('overmsg',sp,lim,ex),ok:t('payN',ex)}))act(()=>payHeat(p,ex));
@@ -400,7 +713,10 @@ async function doCurve(p){
 }
 function startRace(){
   if(!S.players.length){toast(t('needPlayer'));return}
-  act(()=>{S.players.forEach(buildDeck);S.started=true;S.active=0;ui.screen='game';ui.sel.clear()});
+  S.players.forEach(fixRm);
+  const bad=S.players.find(p=>p.rm.length<needRm(p));
+  if(bad){ui.sheet={mode:'pilot',id:bad.id};render();toast(t('rmNeed',bad.name));return}
+  act(()=>{S.players.forEach(buildDeck);S.started=true;S.active=0;ui.screen='game';ui.sel.clear();ui.sheet=null});
 }
 document.addEventListener('click',async e=>{
   const el=e.target.closest('[data-a]');if(!el||el.disabled)return;
@@ -412,12 +728,15 @@ document.addEventListener('click',async e=>{
       const c=p.hand.find(x=>x.id===+d.id);if(!c||!selectable(p,c))break;
       ui.sel.has(c.id)?ui.sel.delete(c.id):ui.sel.add(c.id);render();break;}
     case 'play':doPlay(p);break;
+    case 'direct':doDirect(p);break;
     case 'jam':doJam(p);break;
     case 'endturn':doEnd(p);break;
+    case 'ch':act(()=>{p.play[+d.i].ch=+d.c});break;
+    case 'fx':doFx(p,+d.i,d.k);break;
     case 'accel':
       if(p.accel||p.engine<1){toast(t('noheat'));break}
-      act(()=>{p.engine--;p.discard.push(mk('h'));p.accel=true;addPlus(p,'⚡');L(p,t('lAccel')+' (−1 Heat)')});break;
-    case 'plus':act(()=>addPlus(p,'✚'));break;
+      act(()=>{p.engine--;p.discard.push(mk('h'));p.accel=true;const s=newSlot(null,'⚡');addPlusTo(p,s,1);p.play.push(s);L(p,t('lAccel')+' (−1 Heat)')});break;
+    case 'plus':act(()=>{const s=newSlot(null,'✚');addPlusTo(p,s,1);p.play.push(s)});break;
     case 'adrS':act(()=>{p.adrS=!p.adrS});break;
     case 'adrC':act(()=>{p.adrC=!p.adrC});break;
     case 'adj':act(()=>{p.adj=(p.adj||0)+ +d.d});break;
@@ -433,13 +752,14 @@ document.addEventListener('click',async e=>{
       if(!n){toast(t('noheathand'));break}
       act(()=>{let k=n;p.hand=p.hand.filter(c=>{if(k>0&&c.t==='h'){k--;return false}return true});p.engine+=n;p.coolUsed+=n;L(p,t('lCool',n))});break;}
     case 'advtoggle':ui.adv=!ui.adv;render();break;
+    case 'legtoggle':ui.leg=!ui.leg;render();break;
     case 'addcard':{
       let c;
       if(d.k==='u'){const v=await modal({title:t('addUpg'),msg:t('upgMsg'),input:3,ok:t('add')});if(v===null||isNaN(v))break;c=mk('u',v)}
       else c=mk(d.k);
       act(()=>{p.deck.push(c);shuffle(p.deck);L(p,t('lAdd',d.k==='s'?'Stress':d.k==='h'?'Heat':'Upgrade '+c.v))});break;}
     case 'undo':
-      if(hist.length){S=JSON.parse(hist.pop());ui.sel.clear();save();render()}break;
+      if(hist.length){S=JSON.parse(hist.pop());normalize();ui.sel.clear();save();render()}break;
     case 'lang':S.lang=S.lang==='it'?'en':'it';save();render();break;
     case 'setup':ui.screen=(ui.screen==='setup'&&S.started)?'game':'setup';render();break;
     case 'backgame':ui.screen='game';render();break;
@@ -457,15 +777,38 @@ document.addEventListener('click',async e=>{
       });break;}
     case 'rm':
       if(await modal({title:t('rmConfirm'),msg:''}))act(()=>{S.players=S.players.filter(x=>x.id!==+d.id);if(S.active>=S.players.length)S.active=0;if(!S.players.length)S.started=false});break;
-    case 'optstart':S.opts.start=!S.opts.start;save();render();break;
+    case 'optstart':S.opts.start=!S.opts.start;S.players.forEach(fixRm);save();render();break;
     case 'step':{
       const k=d.k,[lo,hi]=LIM[k],tgt=d.s==='opts'?S.opts:ui;
       tgt[k]=Math.max(lo,Math.min(hi,tgt[k]+ +d.d));save();render();break;}
+    case 'sheet':ui.sheet=d.m==='pool'?{mode:'pool'}:{mode:'pilot',id:+d.id};ui.filt='all';render();break;
+    case 'sheetclose':ui.sheet=null;render();break;
+    case 'filt':ui.filt=d.f;render();break;
+    case 'ptog':{
+      const n=+d.n;
+      act(()=>{
+        if(S.pool.includes(n)){S.pool=S.pool.filter(x=>x!==n);S.players.forEach(q=>{q.upg=q.upg.filter(x=>x!==n);fixRm(q)})}
+        else S.pool.push(n);
+      });break;}
+    case 'utog':{
+      const n=+d.n,q=S.players.find(x=>x.id===ui.sheet.id);if(!q)break;
+      const ow=owner(n);if(ow&&ow.id!==q.id)break;
+      act(()=>{q.upg=q.upg.includes(n)?q.upg.filter(x=>x!==n):[...q.upg,n];fixRm(q)});break;}
+    case 'rmtog':{
+      const q=S.players.find(x=>x.id===ui.sheet.id);if(!q)break;
+      act(()=>{
+        if(q.rm.includes(d.k))q.rm=q.rm.filter(x=>x!==d.k);
+        else{q.rm.push(d.k);const need=needRm(q);if(q.rm.length>need)q.rm=q.rm.slice(-need)}
+      });break;}
   }
 });
 document.addEventListener('input',e=>{
   const d=e.target.dataset;
-  if(d.in==='limit')ui.limit=e.target.value;
+  if(d.in==='limit'){
+    ui.limit=e.target.value;
+    const el=$('#limeff'),p=S.players[S.active];
+    if(el&&p){const f=fx(p),lim=parseInt(ui.limit,10);el.textContent=isNaN(lim)?t('sumLim',sgn(f.lim)):t('limEff',lim,sgn(f.lim),lim+f.lim)}
+  }
   else if(d.in==='newname')ui.newName=e.target.value;
   else if(d.in==='pname'){const q=S.players.find(x=>x.id===+d.id);if(q){q.name=e.target.value;save()}}
 });
